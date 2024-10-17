@@ -7,6 +7,7 @@ import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,11 @@ public class UsuarioController {
 
     @Autowired
     private JWTUtil jwtUtil;
+
+    @GetMapping("/")
+    public RedirectView redirectToLogin() {
+        return new RedirectView("/login.html");  // Redirige a login.html
+    }
 
     @RequestMapping(value = "api/usuarios/{id}", method = RequestMethod.GET)
     public Usuario getUsuario(@PathVariable int id) {
